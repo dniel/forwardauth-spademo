@@ -8,9 +8,7 @@ export enum Environment {
 interface IAppConfiguration {
   apiUrl: string;
   environment: Environment;
-  authClientId: string,
-  authBaseUrl: string,
-  authRedirectUri: string
+  authBaseUrl: string
 }
 
 type IEnvToConfigMap = {
@@ -21,30 +19,22 @@ const envToConfigMap: IEnvToConfigMap = {
   [Environment.LOCAL]: {
     apiUrl: "http://localhost:8080",
     environment: Environment.LOCAL,
-    authBaseUrl: "https://auth.test.cognito.vydev.io",
-    authClientId: "378dc69kt74743jkokrihstdc8",
-    authRedirectUri: "http://localhost:3000"
+    authBaseUrl: "https://auth.dniel.in"
   },
   [Environment.DEV]: {
     apiUrl: "",
     environment: Environment.DEV,
-    authBaseUrl: "https://auth.test.cognito.vydev.io",
-    authClientId: "378dc69kt74743jkokrihstdc8",
-    authRedirectUri: "http://localhost:3000"
+    authBaseUrl: "https://auth.dniel.in",
   },
   [Environment.STAGING]: {
     apiUrl: "",
     environment: Environment.STAGING,
-    authBaseUrl: "https://auth.test.cognito.vydev.io",
-    authClientId: "378dc69kt74743jkokrihstdc8",
-    authRedirectUri: "http://localhost:3000"
+    authBaseUrl: "https://auth.dniel.se",
   },
   [Environment.PROD]: {
     apiUrl: "",
     environment: Environment.PROD,
-    authBaseUrl: "https://auth.test.cognito.vydev.io",
-    authClientId: "378dc69kt74743jkokrihstdc8",
-    authRedirectUri: "http://localhost:3000"
+    authBaseUrl: "https://auth.dniel.se",
   },
 };
 
