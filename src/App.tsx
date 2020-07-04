@@ -1,49 +1,30 @@
 import WelcomeMessage from "./components/WelcomeMessage";
-import React, { useCallback, useEffect, useState } from 'react';
-import { getTokens, login, loginUrl, logout, logoutUrl } from './api/auth';
-
-const params = (new URL(document.location.href)).searchParams;
-const code: string | null = params.get('code'); 
-const tokens = getTokens();
+import Userinfo from "./components/Userinfo";
+import React, { useCallback, useEffect, useState, useContext } from 'react';
+import UserinfoContext from './components/userinfo-context';
+import ConfigContext from './components/config-context';
+import AuthService from './api/auth';
 
 const App: React.FC = () =>  {
-    const [authenticated, setAuthenticated] = useState(tokens !== null);
-    const [authenticating, setAuthenticating] = useState(code !== null);
-    useEffect(() => {
-      const execute = async () => {
-        window.history.replaceState({}, document.title, '/');
-        try {
-          await login(code!);
-          setAuthenticated(true);
-        } catch (err) {
-          // DO NOTHING
-        }
-        setAuthenticating(false);
-      };
-      if (code !== null) {
-        execute();
-      }
-    }, []);
-    const handleClick = useCallback(() => {
-      logout();
-      window.location.assign(logoutUrl);
-    }, []);
-  
-    if (authenticating) {
-      return <div>authenticating...</div>;
-    }
-    if (!authenticated) {
-      return <a href={loginUrl}>Login</a>;
-    }
-    return (
-      <>
-        <WelcomeMessage />;
-        <div>
-          <button onClick={handleClick}>Logout</button>
-        </div>
-      </>
-    );
-  }
+  const configContext = useContext(ConfigContext);
 
+  const userinfo = {
+    "sub": "google-oauth2|115877927226929985701",
+    "name": "Daniel Ellensen",
+    "picture": "https://lh3.googleusercontent.com/a-/AOh14Gg_JprojIDZZNvUWuMi-0lP6Z5yjJEdjN59aJ7SaQ",
+    "email": "daniel@engfeldt.net"
+  };
+
+  const authService = new AuthService(configContext .authBaseUrl);
+  const loginUrl = authService.loginUrl;
+  const logoutUrl = authService.logoutUrl;
+  
+  return (
+    <UserinfoContext.Provider value={userinfo}>
+      <WelcomeMessage/>
+      <Userinfo/>
+    </UserinfoContext.Provider>
+  );
+};
 
 export default App;

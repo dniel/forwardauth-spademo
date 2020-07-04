@@ -5,7 +5,7 @@ export enum Environment {
   PROD = "PROD",
 }
 
-interface IAppConfiguration {
+export interface IAppConfiguration {
   apiUrl: string;
   environment: Environment;
   authBaseUrl: string
@@ -19,7 +19,7 @@ const envToConfigMap: IEnvToConfigMap = {
   [Environment.LOCAL]: {
     apiUrl: "http://localhost:8080",
     environment: Environment.LOCAL,
-    authBaseUrl: "https://auth.dniel.in"
+    authBaseUrl: "https://auth.example.test"
   },
   [Environment.DEV]: {
     apiUrl: "",
@@ -57,3 +57,5 @@ export const getConfig = (
 
   return envToConfigMap[environment];
 };
+
+export default getConfig;

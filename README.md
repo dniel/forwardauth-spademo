@@ -1,6 +1,11 @@
-# Baseline for creating web apps
+# Forwardauth-spademo
 
-[![Build Status](https://jenkins.capra.tv/buildStatus/icon?job=cals-baselines/webapp-baseline/master)](https://jenkins.capra.tv/job/cals-baselines/job/webapp-baseline/job/master/)
+Simple React + Typescript SPA application for demo of authorization 
+and authentication using Forwardauth backend in a SPA client.
+
+## Overview
+
+Should write a quick overview of the application architecture with main points of interest.
 
 # Developing
 
@@ -32,3 +37,11 @@ Performance budget has been enabled for the application. If you get warnings abo
 ```
 $ make analyze
 ```
+
+## Production 
+Publish new docker image to DockerHub and Spinnaker will trigger a Pipeline that automaticaly deploys the image to development and beta kubernetes cluster. After waiting for user confirmation the pipeline if user approve release deploy it into the production cluster.
+
+## Tech
+- Nginx
+- Docker
+- HTML

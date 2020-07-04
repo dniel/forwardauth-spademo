@@ -1,23 +1,25 @@
 import * as React from "react";
+import { useState, useEffect } from 'react';
 import { getConfig } from "../../utils/config-utils";
 import styles from "./WelcomeMessage.module.css";
 
 interface Props {
-  appName?: string;
 }
 
-const WelcomeMessage: React.FC<Props> = ({
-  appName = __BUILD_INFO__.appName,
-}) => {
+const WelcomeMessage: React.FC<Props> = (props) => {
   const config = getConfig();
-
+  const appName = __BUILD_INFO__.appName;
   const appBuildTime = __BUILD_INFO__.appBuildTime;
   const commitHash = __BUILD_INFO__.commitHash;
+
+  useEffect(() => {
+    document.title = `--==##> Welcome to ${appName} <##==--`;  
+  });
 
   return (
     <div className={styles.container}>
       <div>
-        Welcome to <span className={styles.highlight}>{appName}</span>
+      Welcome <span className={styles.highlight}>{appName}</span>
       </div>
       <div>Built {appBuildTime}</div>
       <div>Commit hash: {commitHash}</div>

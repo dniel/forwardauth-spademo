@@ -1,47 +1,71 @@
-import { getConfig } from "../utils/config-utils";
-
-const config = getConfig();
-export const logoutUrl: string = `${config.authBaseUrl}/logout`
-export const loginUrl: string = `${config.authBaseUrl}/login`
-
-const accessToken = window.localStorage.getItem('accessToken');
-const idToken = window.localStorage.getItem('idToken');
-const refreshToken = window.localStorage.getItem('refreshToken');
-let tokens = accessToken === null ? null : {
-    accessToken,
-    idToken
-};
-
 /**
- * Call login url to redirect to login page
- * @param code code for token exchange
+ * Authentication Service for OAuth2 token handling.
+ * 
+ * The tokens received is stored in cookies and are
+ * accessibly to other parts of the application by public 
+ * methods to read them.
+ * 
  */
-export const login = async (code: string) => {
-  console.log("Login", code)
-};
+class AuthService {
+  
+  private baseUrl: string
+  private accessToken: string | null = AuthService.getCookie('ACCESS_TOKEN');
+  private idToken: string | null = AuthService.getCookie('JWT_TOKEN');
+  private refreshToken: string | null = AuthService.getCookie('REFRESH_TOKEN');
+  
+  /**
+   * Construct AuthenticationService.
+   * Load existing tokens from localStorage.
+   * 
+   * @param config application config object.
+   */
+  constructor (authBaseUrl:string) {    
+    this.baseUrl = authBaseUrl;
+  }
 
-/**
- * Call token endpoint to exchange temporary code
- * with tokens.
- * @param code code for token exchange
- */
-export const callback = async (code: string) => {
-  console.log("Callback", code)
-};
+  get userinfo() : string {
+    return `${this.baseUrl}/login`;
+  }
 
-/**
- * Call Logout endpoint to clear out cookies
- * and session by server side.
- */
-export const logout = async () => {
-  console.log("Logout")
-};
+  
+  // Given a cookie key `name`, returns the value of
+  // the cookie or `null`, if the key is not found.
+  static getCookie(name: string): string | null{
+    const nameLenPlus = (name.length + 1);
+    return document.cookie
+      .split(';')
+      .map(c => c.trim())
+      .filter(cookie => {
+        return cookie.substring(0, nameLenPlus) === `${name}=`;
+      })
+      .map(cookie => {
+        return decodeURIComponent(cookie.substring(nameLenPlus));
+      })[0] || null;
+  }
 
-/**
- * Call Userinfo endpoint to get userinfo about current user.
- */
-export const userinfo = async () => {
-  console.log("Userinfo")
-};
+  /**
+   * Check if an Access Token is set.
+   * or else if no token is found, return false.
+   */
+  get isAuthenticated(): boolean{
+    return this.accessToken!==null
+  }
 
-export const getTokens = () => tokens;
+  get loginUrl() : string {
+    return `${this.baseUrl}/login`;
+  }
+
+  get logoutUrl() : string {
+    return `${this.baseUrl}/logout`;
+  }
+
+  get tokens() : Record<"accessToken" | "idToken" | "refreshToken", string | null>{
+    return {
+      accessToken: this.accessToken,
+      idToken: this.idToken,
+      refreshToken: this.refreshToken
+    };
+  }
+}
+
+export default AuthService
