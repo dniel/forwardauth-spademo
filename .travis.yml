@@ -8,7 +8,7 @@ before_script:
   - export BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
   - export COMMIT_TIME=$(git log -1 --pretty=format:%ct|date +"%m%d%Y-%H%M")
   - export APP_VERSION=$COMMIT_TIME-$COMMIT_HASH-$BRANCH
-  - export DOCKER_IMAGE=dniel/spademo
+  - export DOCKER_IMAGE=dniel/forwardauth-spademo
 
 script:
   - docker build -f .travis/docker/Dockerfile -t $DOCKER_IMAGE .

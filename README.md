@@ -45,3 +45,5 @@ Publish new docker image to DockerHub and Spinnaker will trigger a Pipeline that
 - Nginx
 - Docker
 - HTML
+- React + Hooks
+- TypeScript
