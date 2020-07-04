@@ -1,4 +1,4 @@
-# Forwardauth-spademo
+# ForwardAuth SPA-demo
 
 Simple React + Typescript SPA application for demo of authorization 
 and authentication using Forwardauth backend in a SPA client.
