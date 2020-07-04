@@ -11,6 +11,7 @@ before_script:
   - export DOCKER_IMAGE=dniel/forwardauth-spademo
 
 script:
+  - npm run build
   - docker build -f .travis/docker/Dockerfile -t $DOCKER_IMAGE .
 
 after_success:
