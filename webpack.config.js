@@ -122,6 +122,8 @@ module.exports = (env) => {
       contentBase: "./build",
       port: 3000,
       historyApiFallback: true,
+      disableHostCheck: true,
+      host: "0.0.0.0"
     },
     module: {
       rules: [
