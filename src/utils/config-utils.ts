@@ -17,7 +17,7 @@ type IEnvToConfigMap = {
 
 const envToConfigMap: IEnvToConfigMap = {
   [Environment.LOCAL]: {
-    apiUrl: "http://localhost:8080",
+    apiUrl: "https://demo.example.test",
     environment: Environment.LOCAL,
     authBaseUrl: "https://auth.example.test"
   },

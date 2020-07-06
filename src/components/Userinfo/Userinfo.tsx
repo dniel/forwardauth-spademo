@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import styles from "./Userinfo.module.css";
 import AuthService from '../../api/auth';
-import UserinfoContext from '../userinfo-context';
+import { UserContext } from '../../components/UserContextProvider';
 import ConfigContext from '../config-context';
 import axios from 'axios'
 
@@ -10,7 +10,9 @@ interface Props {
 
 const Userinfo: React.FC<Props> = (props) => {
   const configContext = useContext(ConfigContext);
-  const userinfoContext = useContext(UserinfoContext);
+  const userinfoContext = useContext(UserContext);
+  console.log("userinfoContext.sub", userinfoContext.sub)
+
   const [authenticated, setAuthenticated] = useState(userinfoContext.sub!==undefined);
 
   const authService = new AuthService(configContext.authBaseUrl);
@@ -30,7 +32,7 @@ const Userinfo: React.FC<Props> = (props) => {
 
   // return userinfo if authenticated and also a logout link
   return (
-    <UserinfoContext.Consumer>
+    <UserContext.Consumer>
       { userinfo => ( 
         <div className={styles.container}>
           <div>
@@ -41,7 +43,7 @@ const Userinfo: React.FC<Props> = (props) => {
             </div>
         </div>
     )}    
-    </UserinfoContext.Consumer>
+    </UserContext.Consumer>
   );
 };
 
