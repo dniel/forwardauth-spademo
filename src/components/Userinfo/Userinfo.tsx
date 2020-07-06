@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import styles from "./Userinfo.module.css";
-import AuthService from '../../api/auth';
 import { UserContext } from '../../components/UserContextProvider';
 import ConfigContext from '../config-context';
 import axios from 'axios'
@@ -10,15 +9,13 @@ interface Props {
 
 const Userinfo: React.FC<Props> = (props) => {
   const configContext = useContext(ConfigContext);
-  const userinfoContext = useContext(UserContext);
-  console.log("userinfoContext.sub", userinfoContext.sub)
+  const { userinfo, isAuthenticated, loginUrl, logoutUrl } = useContext(UserContext);
 
-  const [authenticated, setAuthenticated] = useState(userinfoContext.sub!==undefined);
+  console.log("logout url", logoutUrl)
+  console.log("login url", loginUrl)
+  console.log("userinfo.sub", userinfo.sub)
+  console.log("isAuthenticated", isAuthenticated)
 
-  const authService = new AuthService(configContext.authBaseUrl);
-  const loginUrl = authService.loginUrl;
-  const logoutUrl = authService.logoutUrl;
-  
   // handle user click for logout.
   const logoutClickHandler = useCallback(() => {
     window.location.assign(logoutUrl);
@@ -26,7 +23,7 @@ const Userinfo: React.FC<Props> = (props) => {
 
 
   // return login link if not authenticated.
-  if (!authenticated) {
+  if (!isAuthenticated) {
     return <a href={loginUrl}>Login</a>;
   }
 
@@ -36,7 +33,7 @@ const Userinfo: React.FC<Props> = (props) => {
       { userinfo => ( 
         <div className={styles.container}>
           <div>
-            Welcome <span className={styles.highlight}>{userinfo.email}</span>
+            Welcome <span className={styles.highlight}>{userinfo.sub}</span>
           </div>
           <div>
               <button onClick={logoutClickHandler}>Logout</button>
