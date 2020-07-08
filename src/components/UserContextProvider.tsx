@@ -25,7 +25,8 @@ const UserProvider: React.FC = (props) => {
 
   // load userinfo for current user.
   useEffect(() => {
-    axios.get('/auth/userinfo')
+    const fetchUserinfo = async () => {
+      await axios.get('/auth/userinfo')
       .then(function (response) {
         console.debug("Loaded userinfo")
         setUserinfo(response.data.properties);
@@ -35,6 +36,9 @@ const UserProvider: React.FC = (props) => {
         setAuthenticated(false)
         console.error("failed to load userinfo", error);
       })
+    };
+ 
+    fetchUserinfo();
   }, []);
 
   return (
