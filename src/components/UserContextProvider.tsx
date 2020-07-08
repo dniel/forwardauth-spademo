@@ -18,21 +18,22 @@ const UserProvider: React.FC = (props) => {
   const configContext = useContext(ConfigContext);
   const authService = new AuthService(configContext.authBaseUrl);
 
-  let [loginUrl, setLoginUrl] = useState<string>(authService.loginUrl);
-  let [logoutUrl, setLogoutUrl] = useState<string>(authService.logoutUrl);
-  let [userinfo, setUserinfo] = useState<Record<string, string>>({});
-  let [isAuthenticated, setAuthenticated] = useState<boolean>(false);
+  const [loginUrl, setLoginUrl] = useState<string>(authService.loginUrl);
+  const [logoutUrl, setLogoutUrl] = useState<string>(authService.logoutUrl);
+  const [userinfo, setUserinfo] = useState<Record<string, string>>({});
+  const [isAuthenticated, setAuthenticated] = useState<boolean>(false);
 
   // load userinfo for current user.
   useEffect(() => {
     axios.get('/auth/userinfo')
       .then(function (response) {
-        setAuthenticated(true)
+        console.debug("Loaded userinfo")
         setUserinfo(response.data.properties);
+        setAuthenticated(true)
       })
       .catch(function (error) {
         setAuthenticated(false)
-        console.error(error);
+        console.error("failed to load userinfo", error);
       })
   }, []);
 

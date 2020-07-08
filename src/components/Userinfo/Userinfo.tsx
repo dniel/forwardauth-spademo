@@ -8,13 +8,7 @@ interface Props {
 }
 
 const Userinfo: React.FC<Props> = (props) => {
-  const configContext = useContext(ConfigContext);
   const { userinfo, isAuthenticated, loginUrl, logoutUrl } = useContext(UserContext);
-
-  console.log("logout url", logoutUrl)
-  console.log("login url", loginUrl)
-  console.log("userinfo.sub", userinfo.sub)
-  console.log("isAuthenticated", isAuthenticated)
 
   // handle user click for logout.
   const logoutClickHandler = useCallback(() => {
@@ -22,25 +16,19 @@ const Userinfo: React.FC<Props> = (props) => {
   }, []);
 
 
-  // return login link if not authenticated.
-  if (!isAuthenticated) {
-    return <a href={loginUrl}>Login</a>;
-  }
-
-  // return userinfo if authenticated and also a logout link
+  // Return userinfo panel or login link, depending on
+  // if user is authenticated or not.
   return (
-    <UserContext.Consumer>
-      { userinfo => ( 
-        <div className={styles.container}>
-          <div>
-            Welcome <span className={styles.highlight}>{userinfo.sub}</span>
-          </div>
-          <div>
-              <button onClick={logoutClickHandler}>Logout</button>
-            </div>
+    isAuthenticated ?
+      <div className={styles.container}>
+        <div>
+          Welcome <span className={styles.highlight}>{userinfo.nickname}</span>
         </div>
-    )}    
-    </UserContext.Consumer>
+        <div>
+          <a href={logoutUrl}>Logout</a>
+        </div>
+      </div>
+      : <a href={loginUrl}>Login</a>
   );
 };
 
