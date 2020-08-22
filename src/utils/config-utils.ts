@@ -24,12 +24,12 @@ const envToConfigMap: IEnvToConfigMap = {
   [Environment.DEV]: {
     apiUrl: "",
     environment: Environment.DEV,
-    authBaseUrl: "https://auth.dniel.in",
+    authBaseUrl: "https://auth.example.test",
   },
   [Environment.STAGING]: {
     apiUrl: "",
     environment: Environment.STAGING,
-    authBaseUrl: "https://auth.dniel.se",
+    authBaseUrl: "https://auth.dniel.in",
   },
   [Environment.PROD]: {
     apiUrl: "",
@@ -39,11 +39,11 @@ const envToConfigMap: IEnvToConfigMap = {
 };
 
 export const getEnvironment = (origin: string): Environment => {
-  if (/^https:\/\/(www\.){0,1}dev/.test(origin)) {
+  if (/^https:\/\/example.test/.test(origin)) {
     return Environment.DEV;
-  } else if (/^https:\/\/(www\.){0,1}staging/.test(origin)) {
+  } else if (/^https:\/\/dniel.in/.test(origin)) {
     return Environment.STAGING;
-  } else if (/^https:\/\//.test(origin)) {
+  } else if (/^https:\/\/dniel.se/.test(origin)) {
     return Environment.PROD;
   }
 

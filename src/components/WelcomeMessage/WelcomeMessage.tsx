@@ -1,30 +1,25 @@
 import * as React from "react";
 import { useState, useEffect } from 'react';
 import { getConfig } from "../../utils/config-utils";
-import styles from "./WelcomeMessage.module.css";
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 
 interface Props {
 }
 
-const WelcomeMessage: React.FC<Props> = (props) => {
-  const config = getConfig();
-  const appName = __BUILD_INFO__.appName;
-  const appBuildTime = __BUILD_INFO__.appBuildTime;
-  const commitHash = __BUILD_INFO__.commitHash;
+const useStyles = makeStyles((theme) => ({
+  highlight: {
+  },
+}));
 
-  useEffect(() => {
-    document.title = `--==##> Welcome to ${appName} <##==--`;  
-  });
+
+const WelcomeMessage: React.FC<Props> = (props) => {
+  const appName = __BUILD_INFO__.appName;
 
   return (
-    <div className={styles.container}>
-      <div>
-      Welcome <span className={styles.highlight}>{appName}</span>
-      </div>
-      <div>Built {appBuildTime}</div>
-      <div>Commit hash: {commitHash}</div>
-      <div>Current environment {config.environment}</div>
-    </div>
+    <Typography paragraph variant="h2">
+    Welcome to {appName}
+    </Typography>
   );
 };
 
