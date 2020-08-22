@@ -3,6 +3,7 @@ import AppMenu from './components/AppMenu';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import Logout from './pages/Logout';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -12,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch,
 } from "react-router-dom";
 
@@ -43,6 +43,7 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/logout" component={Logout} />
             </Switch>
           </Container>
           <Footer />
