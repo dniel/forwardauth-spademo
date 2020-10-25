@@ -59,8 +59,8 @@
     "axios": "^0.20.0",
     "crypto-browserify": "^3.12.0",
     "ketting": "^6.0.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-ketting": "^1.0.0",
     "react-router-dom": "^5.2.0"
   },
