@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { UserContext } from '../components/UserContextProvider';
+import { Link } from '@material-ui/core';
+import { Link as RouterLink } from "react-router-dom";
+import Paper from '@material-ui/core/Paper';
+import List from '@material-ui/core/List';
+import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
 }));
 
-
 const Logout: React.FC = () => {
     const classes = useStyles();
+    const { userinfo, isAuthenticated, loginUrl, logoutUrl } = useContext(UserContext);
 
     return (
         <div>
-            <Typography paragraph variant="h2">
+            <Typography variant="h2">
                 Logout
             </Typography>
             <Typography paragraph variant="body1">
@@ -20,6 +28,13 @@ const Logout: React.FC = () => {
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Typography>
+            <Paper elevation={4}>
+            <List>
+                <Link href={loginUrl} color="inherit"><ListItem>Login again</ListItem></Link>
+                <RouterLink to="/">Back Home</RouterLink>
+                </List>
+            </Paper>            
+
         </div>
     );
 };

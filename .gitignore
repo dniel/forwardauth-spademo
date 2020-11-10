@@ -5,3 +5,6 @@ build/
 *.log
 /coverage/
 /test-report.xml
+.idea
+.vscode
+.terraform

@@ -11,10 +11,11 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { Link as RouterLink } from "react-router-dom";
+
 
 interface Props {
 }
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +81,7 @@ const AppMenu: React.FC<Props> = (props) => {
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem component={RouterLink} to="/profile">Profile</MenuItem>
               <Link href={logoutUrl}><MenuItem>Logout</MenuItem></Link>
             </Menu>
           </div>

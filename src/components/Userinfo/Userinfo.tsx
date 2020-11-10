@@ -1,34 +1,54 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
-import styles from "./Userinfo.module.css";
 import { UserContext } from '../../components/UserContextProvider';
-import ConfigContext from '../config-context';
-import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 interface Props {
 }
 
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+  capitalize: {
+    textTransform: "capitalize"
+  }
+});
+
+function createData(key: string, value: string) {
+  return { key, value };
+}
+
+
 const Userinfo: React.FC<Props> = (props) => {
-  const { userinfo, isAuthenticated, loginUrl, logoutUrl } = useContext(UserContext);
+  const { userinfo } = useContext(UserContext);
+  const rows = Object.entries(userinfo).map(entry => createData(entry[0], entry[1]));
+  const classes = useStyles();
 
-  // handle user click for logout.
-  const logoutClickHandler = useCallback(() => {
-    window.location.assign(logoutUrl);
-  }, []);
-
-
-  // Return userinfo panel or login link, depending on
-  // if user is authenticated or not.
   return (
-    isAuthenticated ?
-      <div className={styles.container}>
-        <div>
-          Welcome <span className={styles.highlight}>{userinfo.nickname}</span>
-        </div>
-        <div>
-          <a href={logoutUrl}>Logout</a>
-        </div>
-      </div>
-      : <a href={loginUrl}>Login</a>
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <caption>A basic table example with a caption</caption>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.key}>
+              <TableCell component="th" scope="row">
+                {row.key}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {row.value}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

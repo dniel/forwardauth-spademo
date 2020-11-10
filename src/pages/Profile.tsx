@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Userinfo from '../components/Userinfo';
 
 const useStyles = makeStyles((theme) => ({
 }));
@@ -11,7 +12,7 @@ const Profile: React.FC = () => {
 
     return (
         <div>
-            <Typography paragraph variant="h2">
+            <Typography variant="h2">
                 Profile
             </Typography>
             <Typography paragraph variant="body1">
@@ -20,6 +21,7 @@ const Profile: React.FC = () => {
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </Typography>
+          <Userinfo/>
         </div>
     );
 };
