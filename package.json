@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack --mode production",
-    "build:measure": "MEASURE=true webpack --env.production",
-    "build:analyze": "ANALYZE=true webpack --env.production",
+    "build:measure": "MEASURE=true webpack --mode production",
+    "build:analyze": "ANALYZE=true webpack --mode production",
     "test": "jest --coverage src",
     "test:watch": "jest src --watch",
     "test:e2e": "testcafe chrome e2e/tests/**/*.test.ts",
