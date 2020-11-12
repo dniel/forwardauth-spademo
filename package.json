@@ -5,7 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --env.production",
+    "build": "webpack --mode production",
     "build:measure": "MEASURE=true webpack --env.production",
     "build:analyze": "ANALYZE=true webpack --env.production",
     "test": "jest --coverage src",
