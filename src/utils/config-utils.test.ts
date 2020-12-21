@@ -2,15 +2,12 @@ import { Environment, getEnvironment, getConfig } from "./config-utils";
 
 describe("getEnvironment", () => {
   test.each`
-    value                               | expectedResult
-    ${"http://localhost:3000"}          | ${Environment.LOCAL}
-    ${"http://localhost:8000"}          | ${Environment.LOCAL}
-    ${"https://dev.example.com"}        | ${Environment.DEV}
-    ${"https://www.dev.example.com"}    | ${Environment.DEV}
-    ${"https://staging.example.com"}    | ${Environment.STAGING}
-    ${"https://www.staging.example.no"} | ${Environment.STAGING}
-    ${"https://example.com"}            | ${Environment.PROD}
-    ${"https://www.example.com"}        | ${Environment.PROD}
+    value                            | expectedResult
+    ${"http://localhost:3000"}       | ${Environment.LOCAL}
+    ${"https://demo.dev.dniel.in"}   | ${Environment.DEV}
+    ${"https://demo.test.dniel.in"}  | ${Environment.TEST}
+    ${"https://demo.stage.dniel.se"} | ${Environment.STAGING}
+    ${"https://demo.prod.dniel.se"}  | ${Environment.PROD}
   `("should return $expectedResult for $value", ({ expectedResult, value }) => {
     expect(getEnvironment(value)).toEqual(expectedResult);
   });
@@ -24,13 +21,25 @@ describe("getConfig", () => {
   });
 
   test("should fetch config for staging environment", () => {
-    const config = getConfig("https://staging.example.com");
+    const config = getConfig("https://demo.stage.dniel.se");
 
     expect(config.environment).toBe(Environment.STAGING);
   });
 
+  test("should fetch config for test environment", () => {
+    const config = getConfig("https://demo.test.dniel.in");
+
+    expect(config.environment).toBe(Environment.TEST);
+  });
+
+  test("should fetch config for dev environment", () => {
+    const config = getConfig("https://demo.dev.dniel.in");
+
+    expect(config.environment).toBe(Environment.DEV);
+  });
+
   test("should fetch config for prod environment", () => {
-    const config = getConfig("https://example.com");
+    const config = getConfig("https://demo.prod.dniel.se");
 
     expect(config.environment).toBe(Environment.PROD);
   });
