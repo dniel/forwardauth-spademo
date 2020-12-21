@@ -45,13 +45,13 @@ const envToConfigMap: IEnvToConfigMap = {
 };
 
 export const getEnvironment = (origin: string): Environment => {
-  if (/^https?:\/\/(\w*)\.dev\.dniel\.[a-z]{2,3}/.test(origin)) {
+  if (/^https?:\/\/.*\.dev\.dniel\.[a-z]{2,3}/.test(origin)) {
     return Environment.DEV;
-  } else if (/^https?:\/\/([a-z]*)\.test\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https?:\/\/.*\.test\.dniel\.[a-z]{2,3}/.test(origin)) {
     return Environment.TEST;
-  } else if (/^https?:\/\/([a-z]*)\.stage\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https?:\/\/.*\.stage\.dniel\.[a-z]{2,3}/.test(origin)) {
     return Environment.STAGING;
-  } else if (/^https?:\/\/([a-z]*)\.prod\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https?:\/\/.*\.prod\.dniel\.[a-z]{2,3}/.test(origin)) {
     return Environment.PROD;
   }
 
