@@ -16,7 +16,7 @@ data "aws_route53_zone" "selected" {
 # create the dns record in hosted zone.
 resource "aws_route53_record" "spademo" {
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "${local.app_name}.${data.aws_route53_zone.selected.name}"
+  name    = "spademo.${data.aws_route53_zone.selected.name}"
   type    = "A"
 
   alias {
@@ -34,7 +34,10 @@ resource "helm_release" "spa-demo" {
   namespace  = var.name_prefix
 #  version    = var.whoami_helm_release_version
 
-
+  set{
+    name  = "image.pullPolicy"
+    value = "Always"
+  }
   set {
     name  = "ingressroute.enabled"
     value = "true"
