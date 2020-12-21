@@ -34,10 +34,7 @@ resource "helm_release" "spa-demo" {
   namespace  = var.name_prefix
 #  version    = var.whoami_helm_release_version
 
-  set{
-    name  = "image.pullPolicy"
-    value = "Always"
-  }
+
   set {
     name  = "ingressroute.enabled"
     value = "true"
