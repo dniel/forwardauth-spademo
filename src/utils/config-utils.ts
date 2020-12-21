@@ -55,7 +55,7 @@ export const getEnvironment = (origin: string): Environment => {
     return Environment.PROD;
   }
 
-  return Environment.LOCAL;
+  return Environment.PROD;
 };
 
 export const getConfig = (
