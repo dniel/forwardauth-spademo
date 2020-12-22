@@ -1,33 +1,28 @@
 /**
  * Authentication Service for OAuth2 token handling.
- * 
+ *
  * The tokens received is stored in cookies and are
- * accessibly to other parts of the application by public 
+ * accessibly to other parts of the application by public
  * methods to read them.
- * 
+ *
  */
 class AuthService {
-  
+
   private baseUrl: string
   private accessToken: string | null = AuthService.getCookie('ACCESS_TOKEN');
   private idToken: string | null = AuthService.getCookie('JWT_TOKEN');
   private refreshToken: string | null = AuthService.getCookie('REFRESH_TOKEN');
-  
+
   /**
    * Construct AuthenticationService.
    * Load existing tokens from localStorage.
-   * 
+   *
    * @param config application config object.
    */
-  constructor (authBaseUrl:string) {    
+  constructor (authBaseUrl:string) {
     this.baseUrl = authBaseUrl;
   }
 
-  get userinfo() : string {
-    return `${this.baseUrl}/login`;
-  }
-
-  
   // Given a cookie key `name`, returns the value of
   // the cookie or `null`, if the key is not found.
   static getCookie(name: string): string | null{

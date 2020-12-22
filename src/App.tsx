@@ -8,14 +8,16 @@ import Logout from './pages/Logout';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
-import { UserProvider } from './components/UserContextProvider';
-import { makeStyles } from '@material-ui/core/styles';
+import {UserProvider} from './components/UserContextProvider';
+import {makeStyles} from '@material-ui/core/styles';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from "react-router-dom";
 
+import {Client} from 'ketting';
+import {KettingProvider} from 'react-ketting';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,28 +31,31 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const client = new Client('https://spademo.prod.dniel.se/auth');
 
 const App: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <UserProvider>
-      <Router>
-        <div className={classes.root}>
-          <CssBaseline />
-          <AppMenu />
-          <Container component="main" className={classes.main} maxWidth="md">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/logout" component={Logout} />
-              <Route exact path="/home" component={Home} />
-            </Switch>
-          </Container>
-          <Footer />
-        </div>
-      </Router>
-    </UserProvider>
+    <KettingProvider client={client}>
+      <UserProvider>
+        <Router>
+          <div className={classes.root}>
+            <CssBaseline/>
+            <AppMenu/>
+            <Container component="main" className={classes.main} maxWidth="md">
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/profile" component={Profile}/>
+                <Route exact path="/logout" component={Logout}/>
+                <Route exact path="/home" component={Home}/>
+              </Switch>
+            </Container>
+            <Footer/>
+          </div>
+        </Router>
+      </UserProvider>
+    </KettingProvider>
   );
 };
 

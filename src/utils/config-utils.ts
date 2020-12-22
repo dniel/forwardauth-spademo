@@ -18,29 +18,29 @@ type IEnvToConfigMap = {
 
 const envToConfigMap: IEnvToConfigMap = {
   [Environment.LOCAL]: {
-    apiUrl: "https://demo.example.test",
+    apiUrl: "https://spademo.example.test/auth",
     environment: Environment.LOCAL,
-    authBaseUrl: "https://auth.example.test",
+    authBaseUrl: "https://spademo.example.test/auth",
   },
   [Environment.DEV]: {
-    apiUrl: "https://demo.example.test",
+    apiUrl: "https://spademo.dev.dniel.in/auth",
     environment: Environment.DEV,
-    authBaseUrl: "https://auth.dev.dniel.in",
+    authBaseUrl: "https://spademo.dev.dniel.in/auth",
   },
   [Environment.TEST]: {
-    apiUrl: "https://demo.example.test",
+    apiUrl: "https://spademo.test.dniel.in/auth",
     environment: Environment.TEST,
-    authBaseUrl: "https://auth.test.dniel.in",
+    authBaseUrl: "https://spademo.test.dniel.in/auth",
   },
   [Environment.STAGING]: {
-    apiUrl: "https://demo.example.test",
+    apiUrl: "https://spademo.stage.dniel.se/auth",
     environment: Environment.STAGING,
-    authBaseUrl: "https://auth.stage.dniel.se",
+    authBaseUrl: "https://spademo.stage.dniel.se/auth",
   },
   [Environment.PROD]: {
-    apiUrl: "https://demo.example.test",
+    apiUrl: "https://spademo.prod.dniel.se/auth",
     environment: Environment.PROD,
-    authBaseUrl: "https://auth.prod.dniel.se",
+    authBaseUrl: "https://spademo.prod.dniel.se/auth",
   },
 };
 
