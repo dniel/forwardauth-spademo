@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 import AuthService from '../api/auth';
 import ConfigContext from './config-context';
 import axios from 'axios';
+import { useResource } from 'react-ketting';
 
 const UserContext = createContext({
   userinfo: {} as Record<string, string>,
@@ -14,6 +15,11 @@ const UserProvider: React.FC = (props) => {
   const {
     children,
   } = props;
+
+  const { loading, error, data } = useResource<Record<string, string>>('/userinfo');
+  console.debug(`Loading: ${loading}`);
+  console.debug(`Error: ${error}`);
+  console.debug(`Data: ${data}`);
 
   const configContext = useContext(ConfigContext);
   const authService = new AuthService(configContext.authBaseUrl);
@@ -37,7 +43,7 @@ const UserProvider: React.FC = (props) => {
         console.error("failed to load userinfo", error);
       })
     };
- 
+
     fetchUserinfo();
   }, []);
 
