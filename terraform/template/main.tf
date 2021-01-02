@@ -32,9 +32,12 @@ resource "helm_release" "spa-demo" {
   repository = "https://dniel.github.com/charts"
   chart      = local.app_name
   namespace  = var.name_prefix
-#  version    = var.whoami_helm_release_version
+  version    = "0.3.0"
 
-
+  set {
+    name  = "image.pullPolicy"
+    value = "Always"
+  }
   set {
     name  = "ingressroute.enabled"
     value = "true"
