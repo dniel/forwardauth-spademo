@@ -32,7 +32,7 @@ resource "helm_release" "spa-demo" {
   repository = "https://dniel.github.com/charts"
   chart      = local.app_name
   namespace  = var.name_prefix
-  version    = "0.3.0"
+  version    = "0.4.0"
 
   set {
     name  = "image.pullPolicy"
