@@ -8,7 +8,7 @@ locals {
   app_name                         = "spa-demo"
 }
 
-# the hosted_zone to create whoami fqdn in.
+# the hosted_zone to create spademo fqdn in.
 data "aws_route53_zone" "selected" {
   name = var.domain_name
 }
@@ -26,7 +26,7 @@ resource "aws_route53_record" "spademo" {
   }
 }
 
-# create helm release for whoami app.
+# create helm release for spademo app.
 resource "helm_release" "spa-demo" {
   name       = local.app_name
   repository = "https://dniel.github.com/charts"
