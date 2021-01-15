@@ -15,7 +15,7 @@ module "spademo" {
 
   name       = local.app_name
   chart      = local.app_name
-  chart_version = "0.6.1"
+  chart_version = "0.7.0"
 
   # Custom values for Chart.
   values = [
