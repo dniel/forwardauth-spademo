@@ -3,8 +3,6 @@
 #
 #############################################
 locals {
-  forwardauth_middleware_namespace = var.name_prefix
-  forwardauth_middleware_name      = "forwardauth-authorize"
   app_name                         = "spa-demo"
 }
 
