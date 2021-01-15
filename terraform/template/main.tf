@@ -8,54 +8,30 @@ locals {
   app_name                         = "spa-demo"
 }
 
-# the hosted_zone to create spademo fqdn in.
-data "aws_route53_zone" "selected" {
-  name = var.domain_name
-}
+module "spademo" {
+  source            = "github.com/dniel/terraform?ref=master/modules/helm-app"
+  name_prefix       = var.name_prefix
+  domain_name       = var.domain_name
 
-# create the dns record in hosted zone.
-resource "aws_route53_record" "spademo" {
-  zone_id = data.aws_route53_zone.selected.zone_id
-  name    = "spademo.${data.aws_route53_zone.selected.name}"
-  type    = "A"
-
-  alias {
-    name                   = "lb.${data.aws_route53_zone.selected.name}"
-    zone_id                = data.aws_route53_zone.selected.zone_id
-    evaluate_target_health = false
-  }
-}
-
-# create helm release for spademo app.
-resource "helm_release" "spa-demo" {
-  name       = local.app_name
   repository = "https://dniel.github.com/charts"
-  chart      = local.app_name
-  namespace  = var.name_prefix
-  version    = "0.4.0"
 
-  set {
-    name  = "image.pullPolicy"
-    value = "Always"
-  }
-  set {
-    name  = "ingressroute.enabled"
-    value = "true"
-  }
-  set {
-    name  = "ingressroute.annotations.kubernetes\\.io/ingress\\.class"
-    value = "traefik-${var.name_prefix}"
-  }
-  set {
-    name  = "ingressroute.hostname"
-    value = aws_route53_record.spademo.fqdn
-  }
-  set {
-    name  = "ingressroute.middlewares[0].name"
-    value = local.forwardauth_middleware_name
-  }
-  set {
-    name  = "ingressroute.middlewares[0].namespace"
-    value = local.forwardauth_middleware_namespace
-  }
+  name       = local.app_name
+  chart      = local.app_name
+  chart_version = "0.6.1"
+
+  # Custom values for Chart.
+  values = [
+    {
+      name  = "ingressroute.enabled"
+      value = "true"
+    },
+    {
+      name  = "ingressroute.annotations.kubernetes\\.io/ingress\\.class"
+      value = "traefik-${var.name_prefix}"
+    },
+    {
+      name  = "ingressroute.hostname"
+      value = "spademo.${var.domain_name}"
+    }
+  ]
 }
