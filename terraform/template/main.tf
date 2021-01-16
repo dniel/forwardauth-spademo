@@ -2,10 +2,6 @@
 #
 #
 #############################################
-locals {
-  app_name                         = "spa-demo"
-}
-
 module "spademo" {
   source            = "github.com/dniel/terraform?ref=master/modules/helm-app"
   name_prefix       = var.name_prefix
@@ -13,9 +9,9 @@ module "spademo" {
 
   repository = "https://dniel.github.com/charts"
 
-  name       = local.app_name
-  chart      = local.app_name
-  chart_version = "0.7.0"
+  name       = "spademo"
+  chart      = "spa-demo"
+  chart_version = "0.7.3"
 
   # Custom values for Chart.
   values = [
