@@ -1,6 +1,9 @@
 #############################################
+# SPA DEMO application.
 #
-#
+# Used for testing Auth0 authentication
+# with a single page application written in
+# typescript.
 #############################################
 module "spademo" {
   source            = "github.com/dniel/terraform?ref=master/modules/helm-app"
