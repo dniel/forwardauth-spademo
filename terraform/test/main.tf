@@ -25,14 +25,14 @@ provider "aws" {
 }
 
 locals {
-  auth0_client_id                    = jsondecode(data.aws_secretsmanager_secret_version.auth0.secret_string)["client_id"]
-  auth0_client_secret                = jsondecode(data.aws_secretsmanager_secret_version.auth0.secret_string)["client_secret"]
-  auth0_domain                       = "dniel.eu.auth0.com"
-  kube_context                       = "juju-context"
-  kube_config                        = "~/.kube/config"
-  aws_region                         = "eu-north-1"
-  name_prefix                        = "test"
-  domain_name                        = "dniel.in"
+  auth0_client_id     = jsondecode(data.aws_secretsmanager_secret_version.auth0.secret_string)["client_id"]
+  auth0_client_secret = jsondecode(data.aws_secretsmanager_secret_version.auth0.secret_string)["client_secret"]
+  auth0_domain        = "dniel.eu.auth0.com"
+  kube_context        = "juju-context"
+  kube_config         = "~/.kube/config"
+  aws_region          = "eu-north-1"
+  name_prefix         = "test"
+  domain_name         = "dniel.in"
 }
 
 #########################################
@@ -40,7 +40,7 @@ locals {
 #
 #########################################
 module "spademo" {
-  source = "../template"
+  source      = "../template"
   name_prefix = local.name_prefix
   domain_name = "${local.name_prefix}.${local.domain_name}"
 }

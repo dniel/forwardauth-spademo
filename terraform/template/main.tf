@@ -6,14 +6,14 @@
 # typescript.
 #############################################
 module "spademo" {
-  source            = "github.com/dniel/terraform?ref=master/modules/helm-app"
-  name_prefix       = var.name_prefix
-  domain_name       = var.domain_name
+  source      = "github.com/dniel/terraform?ref=master/modules/helm-app"
+  name_prefix = var.name_prefix
+  domain_name = var.domain_name
 
   repository = "https://dniel.github.com/charts"
 
-  name       = "spademo"
-  chart      = "spa-demo"
+  name          = "spademo"
+  chart         = "spa-demo"
   chart_version = "0.7.3"
 
   # Custom values for Chart.
