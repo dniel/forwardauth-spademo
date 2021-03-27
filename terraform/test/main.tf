@@ -18,6 +18,7 @@ provider "kubernetes-alpha" {
 provider "helm" {
   kubernetes {
     config_context = local.kube_context
+    config_path    = local.kube_config
   }
 }
 provider "aws" {

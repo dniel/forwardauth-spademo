@@ -10,7 +10,6 @@ provider "auth0" {
 }
 provider "kubernetes" {
   config_context = local.kube_context
-  config_path    = local.kube_config
 }
 provider "kubernetes-alpha" {
   config_context = local.kube_context
@@ -25,6 +24,7 @@ provider "helm" {
 provider "aws" {
   region = local.aws_region
 }
+
 
 locals {
   auth0_client_id     = jsondecode(data.aws_secretsmanager_secret_version.auth0.secret_string)["client_id"]
