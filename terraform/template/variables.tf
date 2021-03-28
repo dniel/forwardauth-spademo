@@ -1,3 +1,9 @@
+variable "image_tag" {
+  description = "The image tag of the docker container to deploy of the spa-demo application."
+  type = string
+  default = "latest"
+}
+
 variable "name_prefix" {
 }
 

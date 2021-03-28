@@ -19,6 +19,14 @@ module "spademo" {
   # Custom values for Chart.
   values = [
     {
+      name  = "image.pullPolicy"
+      value = "always"
+    },
+    {
+      name  = "image.tag"
+      value = var.image_tag
+    },
+    {
       name  = "ingressroute.enabled"
       value = "true"
     },
