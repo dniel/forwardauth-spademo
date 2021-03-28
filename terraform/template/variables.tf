@@ -4,6 +4,16 @@ variable "image_tag" {
   default = "latest"
 }
 
+variable "image_pull_policy" {
+  type    = string
+  default = "Always"
+
+  validation {
+    condition     = contains(["Always", "IfNotPresent", "Never"], var.image_pull_policy)
+    error_message = "Allowed values for input_parameter are \"Always\", \"IfNotPresent\", \"Never\"."
+  }
+}
+
 variable "name_prefix" {
 }
 

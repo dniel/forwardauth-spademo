@@ -20,7 +20,7 @@ module "spademo" {
   values = [
     {
       name  = "image.pullPolicy"
-      value = "always"
+      value = var.image_pull_policy
     },
     {
       name  = "image.tag"
