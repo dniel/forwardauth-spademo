@@ -38,24 +38,24 @@ const envToConfigMap: IEnvToConfigMap = {
     authBaseUrl: "https://spademo.stage.dniel.se/auth",
   },
   [Environment.PROD]: {
-    apiUrl: "https://spademo.prod.dniel.se/auth",
+    apiUrl: "https://spademo.dniel.se/auth",
     environment: Environment.PROD,
-    authBaseUrl: "https://spademo.prod.dniel.se/auth",
+    authBaseUrl: "https://spademo.dniel.se/auth",
   },
 };
 
 export const getEnvironment = (origin: string): Environment => {
-  if (/^https?:\/\/.*\.dev\.dniel\.[a-z]{2,3}/.test(origin)) {
+  if (/^https:\/\/(spademo\.){0,1}dev/.test(origin)) {
     return Environment.DEV;
-  } else if (/^https?:\/\/.*\.test\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https:\/\/(spademo\.){0,1}test/.test(origin)) {
     return Environment.TEST;
-  } else if (/^https?:\/\/.*\.stage\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https:\/\/(spademo\.){0,1}stage/.test(origin)) {
     return Environment.STAGING;
-  } else if (/^https?:\/\/.*\.prod\.dniel\.[a-z]{2,3}/.test(origin)) {
+  } else if (/^https:\/\//.test(origin)) {
     return Environment.PROD;
+  } else {
+    return Environment.LOCAL;
   }
-
-  return Environment.LOCAL;
 };
 
 export const getConfig = (
