@@ -7,7 +7,7 @@ describe("getEnvironment", () => {
     ${"https://demo.dev.dniel.in"}   | ${Environment.DEV}
     ${"https://demo.test.dniel.in"}  | ${Environment.TEST}
     ${"https://demo.stage.dniel.se"} | ${Environment.STAGING}
-    ${"https://demo.prod.dniel.se"}  | ${Environment.PROD}
+    ${"https://demo.dniel.se"}       | ${Environment.PROD}
   `("should return $expectedResult for $value", ({ expectedResult, value }) => {
     expect(getEnvironment(value)).toEqual(expectedResult);
   });

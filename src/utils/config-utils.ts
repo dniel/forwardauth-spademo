@@ -45,11 +45,11 @@ const envToConfigMap: IEnvToConfigMap = {
 };
 
 export const getEnvironment = (origin: string): Environment => {
-  if (/^https:\/\/(spademo\.){0,1}dev/.test(origin)) {
+  if (/^https:\/\/(.*\.){0,1}dev/.test(origin)) {
     return Environment.DEV;
-  } else if (/^https:\/\/(spademo\.){0,1}test/.test(origin)) {
+  } else if (/^https:\/\/(.*\.){0,1}test/.test(origin)) {
     return Environment.TEST;
-  } else if (/^https:\/\/(spademo\.){0,1}stage/.test(origin)) {
+  } else if (/^https:\/\/(.*\.){0,1}stage/.test(origin)) {
     return Environment.STAGING;
   } else if (/^https:\/\//.test(origin)) {
     return Environment.PROD;
