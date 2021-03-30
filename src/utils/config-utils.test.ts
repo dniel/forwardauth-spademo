@@ -1,13 +1,13 @@
-import { Environment, getEnvironment, getConfig } from "./config-utils";
+import {Environment, getEnvironment, getConfig} from "./config-utils";
 
 describe("getEnvironment", () => {
   test.each`
-    value                            | expectedResult
-    ${"http://localhost:3000"}       | ${Environment.LOCAL}
-    ${"https://demo.dev.dniel.in"}   | ${Environment.DEV}
-    ${"https://demo.test.dniel.in"}  | ${Environment.TEST}
-    ${"https://demo.stage.dniel.se"} | ${Environment.STAGING}
-    ${"https://demo.dniel.se"}       | ${Environment.PROD}
+    value                               | expectedResult
+    ${"http://localhost:3000"}          | ${Environment.LOCAL}
+    ${"https://spademo.dev.dniel.in"}   | ${Environment.DEV}
+    ${"https://spademo.test.dniel.in"}  | ${Environment.TEST}
+    ${"https://spademo.stage.dniel.se"} | ${Environment.STAGING}
+    ${"https://spademo.dniel.se"}       | ${Environment.PROD}
   `("should return $expectedResult for $value", ({ expectedResult, value }) => {
     expect(getEnvironment(value)).toEqual(expectedResult);
   });
