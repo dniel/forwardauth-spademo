@@ -8,7 +8,7 @@
 
 # Read version to deploy from SSM parameter.
 data "aws_ssm_parameter" "spademo_version" {
-  name = "/version/${var.name_prefix}/forwardauth-spademo"
+  name = "/versions/${var.name_prefix}/forwardauth-spademo"
 }
 
 module "spademo" {
