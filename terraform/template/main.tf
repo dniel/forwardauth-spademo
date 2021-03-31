@@ -5,6 +5,12 @@
 # with a single page application written in
 # typescript.
 #############################################
+
+# Read version to deploy from SSM parameter.
+data "aws_ssm_parameter" "spademo_version" {
+  name = "/version/${var.name_prefix}/forwardauth-spademo"
+}
+
 module "spademo" {
   source      = "github.com/dniel/terraform?ref=master/modules/helm-app"
   name_prefix = var.name_prefix
@@ -24,7 +30,7 @@ module "spademo" {
     },
     {
       name  = "image.tag"
-      value = var.image_tag
+      value = data.aws_ssm_parameter.spademo_version.value
     },
     {
       name  = "ingressroute.enabled"
