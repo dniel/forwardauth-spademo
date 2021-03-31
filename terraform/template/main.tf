@@ -11,6 +11,7 @@ data "aws_ssm_parameter" "spademo_version" {
   name = "/versions/${var.name_prefix}/forwardauth-spademo"
 }
 
+# Define the SPA-Demo application
 module "spademo" {
   source      = "github.com/dniel/terraform?ref=master/modules/helm-app"
   name_prefix = var.name_prefix
