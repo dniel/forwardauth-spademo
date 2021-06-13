@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const client = new Client('https://spademo.prod.dniel.se/auth');
+const client = new Client('https://spademo.prod.nordlab.io/auth');
 
 const App: React.FC = () => {
   const classes = useStyles();
