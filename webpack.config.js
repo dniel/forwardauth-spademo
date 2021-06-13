@@ -7,10 +7,10 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const GitRevisionPlugin = require("git-revision-webpack-plugin");
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
+const gitRevisionPlugin = new GitRevisionPlugin();
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const webpack = require("webpack");
 
 const packageJson = require("./package.json");
@@ -83,9 +83,10 @@ module.exports = (env) => {
         __BUILD_INFO__: JSON.stringify({
           appName: packageJson.name,
           appBuildTime: new Date().toISOString(),
-          commitHash: new GitRevisionPlugin({
-            commithashCommand: "rev-parse --short HEAD",
-          }).commithash(),
+          VERSION: JSON.stringify(gitRevisionPlugin.version()),
+          commitHash: JSON.stringify(gitRevisionPlugin.commithash()),
+          BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
+          LASTCOMMITDATETIME: JSON.stringify(gitRevisionPlugin.lastcommitdatetime()),
         }),
       }),
     ],
