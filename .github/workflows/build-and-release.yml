@@ -2,7 +2,7 @@
 # Workflow that zip, uploads artifact and notify SNS to start pipeline.
 #
 ######################################################################
-name: 'Publish Docker Image'
+name: 'Build and Release'
 on:
   push:
     branches:
