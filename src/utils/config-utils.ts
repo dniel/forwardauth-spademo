@@ -23,24 +23,24 @@ const envToConfigMap: IEnvToConfigMap = {
     authBaseUrl: "https://spademo.example.test/auth",
   },
   [Environment.DEV]: {
-    apiUrl: "https://spademo.dev.dniel.in/auth",
+    apiUrl: "https://spademo.dev.nordlab.io/auth",
     environment: Environment.DEV,
-    authBaseUrl: "https://spademo.dev.dniel.in/auth",
+    authBaseUrl: "https://spademo.dev.nordlab.io/auth",
   },
   [Environment.TEST]: {
-    apiUrl: "https://spademo.test.dniel.in/auth",
+    apiUrl: "https://spademo.test.nordlab.io/auth",
     environment: Environment.TEST,
-    authBaseUrl: "https://spademo.test.dniel.in/auth",
+    authBaseUrl: "https://spademo.test.nordlab.io/auth",
   },
   [Environment.STAGING]: {
-    apiUrl: "https://spademo.stage.dniel.se/auth",
+    apiUrl: "https://spademo.stage.nordlab.io/auth",
     environment: Environment.STAGING,
-    authBaseUrl: "https://spademo.stage.dniel.se/auth",
+    authBaseUrl: "https://spademo.stage.nordlab.io/auth",
   },
   [Environment.PROD]: {
-    apiUrl: "https://spademo.dniel.se/auth",
+    apiUrl: "https://spademo.nordlab.io/auth",
     environment: Environment.PROD,
-    authBaseUrl: "https://spademo.dniel.se/auth",
+    authBaseUrl: "https://spademo.nordlab.io/auth",
   },
 };
 

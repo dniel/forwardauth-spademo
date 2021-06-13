@@ -4,6 +4,6 @@ include {
 
 inputs = {
   name_prefix         = "dev"
-  domain_name         = "dev.dniel.in"
-  kube_config_context = "juju-context"
+  domain_name         = "dev.nordlab.io"
+  kube_config_context = "tkg-test-01"
 }

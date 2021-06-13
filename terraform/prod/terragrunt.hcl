@@ -4,6 +4,6 @@ include {
 
 inputs = {
   name_prefix         = "prod"
-  domain_name         = "dniel.se"
+  domain_name         = "nordlab.io"
   kube_config_context = "eks-dniel-prod"
 }

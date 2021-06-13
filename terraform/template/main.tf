@@ -17,7 +17,7 @@ module "spademo" {
   name_prefix = var.name_prefix
   domain_name = var.domain_name
 
-  repository = "https://dniel.github.com/charts"
+  repository = "https://dniel.github.io/charts"
 
   name          = "spademo"
   chart         = "spa-demo"
