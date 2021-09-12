@@ -39,7 +39,7 @@
     "jest-each": "27.1.1",
     "jest-sonar-reporter": "2.0.0",
     "postcss-loader": "6.1.1",
-    "prettier": "2.3.2",
+    "prettier": "2.4.0",
     "source-map-loader": "3.0.0",
     "speed-measure-webpack-plugin": "1.5.0",
     "style-loader": "2.0.0",
